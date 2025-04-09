@@ -1,0 +1,35 @@
+=======================================================
+  create database and schemas 
+==========================================================
+script purpose :
+this script creates a new databse named 'datawarehouse 'after checking ,
+if it is already exists ,the it will dropped and recreated .
+additonally the script sets up three schemas with the databse 'comapany','bussiness','startup'
+
+--------------------------------------------------------------
+  
+use master ;
+go 
+
+-----drop and recreate the datawarehoure database 
+if exists (select 1 from sys.database where name ='datawarehouse ')
+begin 
+	alter database datawarehouse set single_user with rollbasck immediate ;
+	drop database datawarehouse
+end 
+go 
+
+------create the 'datawarehouse' database 
+create database datawarehouse;
+go
+
+use datawarehouse ;
+go 
+
+----create schemas 
+create schema company ;
+go
+create schema business;
+go
+create schema startup;
+go
